@@ -98,6 +98,36 @@ class TestSQL:
         sql_result = db.session.execute(text(sql)).fetchall()
         assert grade_a_count_2 == sql_result[0][0]
 
+        '''# Create and grade 5 assignments for a different teacher (teacher_id=3)
+        grade_a_count_3 = self.create_n_graded_assignments_for_teacher_and_student(5, 3)
+
+        # Execute the SQL query again and check if the count matches the newly created assignments
+        sql_result = db.session.execute(text(sql)).fetchall()
+        assert grade_a_count_3 == sql_result[0][0]
+
+        # Create and grade 10 assignments for a different teacher (teacher_id=4)
+        grade_a_count_4= self.create_n_graded_assignments_for_teacher_and_student(10, 4)
+
+        # Execute the SQL query again and check if the count matches the newly created assignments
+        sql_result = db.session.execute(text(sql)).fetchall()
+        assert grade_a_count_4 == sql_result[0][0]
+
+        # Create and grade 5 assignments for a different teacher (teacher_id=5)
+        grade_a_count_5 = self.create_n_graded_assignments_for_teacher_and_student(5, 5)
+
+        # Execute the SQL query again and check if the count matches the newly created assignments
+        sql_result = db.session.execute(text(sql)).fetchall()
+        assert grade_a_count_5 == sql_result[0][0]
+
+        # Create and grade 10 assignments for a different teacher (teacher_id=6)
+        grade_a_count_6 = self.create_n_graded_assignments_for_teacher_and_student(10, 6)
+
+        # Execute the SQL query again and check if the count matches the newly created assignments
+        sql_result = db.session.execute(text(sql)).fetchall()
+        assert grade_a_count_6 == sql_result[0][0]'''
+
+
+
     def teardown_method(self) -> None:
         # Rollback the changes to the database after each test
         db.session.rollback()

@@ -1,32 +1,44 @@
-# Fyle Backend Challenge
 
-## Who is this for?
+🎓 Academic-Assignment-Management-Backend-Service
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. You should be able to commit to at least 6 months of dedicated time for internship.
-
-## Why work at Fyle?
-
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
-
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+This is a backend service for a classroom for managing 
+a simple academic system involving Students, Teachers, Assignments, and a Principal. 
+The API supports creation, submission, grading, and listing of assignments, with role-based access for each entity.
 
 
-## Challenge outline
+🚀 Features
+✅ Student can:
 
-**You are allowed to use any online/AI tool such as ChatGPT, Gemini, etc. to complete the challenge. However, we expect you to fully understand the code and logic involved.**
+Create and edit draft assignments
 
-This challenge involves writing a backend service for a classroom. The challenge is described in detail [here](./Application.md)
+Submit assignments to teachers
 
+View their assignments
 
-## What happens next?
+✅ Teacher can:
 
-You will hear back within 48 hours from us via email. 
+View submitted assignments
 
+Grade assignments assigned to them
 
-## Installation
+✅ Principal can:
 
-1. **Please ensure that you don't fork this repository. We want your submission to be private to avoid plagiarism**
-2. Clone the repo to your local and ensure you push your code into your own **private repository** on GitHub.
+View all teachers
+
+View all submitted or graded assignments
+
+Re-grade assignments already graded by teachers
+
+✅ Administered using Flask, SQLAlchemy, Alembic, and SQLite
+
+⚙️ Setup Instructions
+### Clone the Repository
+
+```commandline
+git clone https://github.com/yourusername/yourrepo.git
+cd yourrepo
+
+```
 
 ### Install requirements
 
@@ -57,17 +69,64 @@ pytest -vvv -s tests/
 # open htmlcov/index.html
 ```
 
+### SQL Assignment
+Two SQL files to be implemented:
 
-## Submission
+tests/SQL/count_grade_A_assignments_by_teacher_with_max_grading.sql
 
-For submitting the assignment, please follow these steps:
+tests/SQL/count_assignments_in_each_grade.sql
 
-* Ensure that you push your code into a private repository on GitHub.
-* Add `KirtiGautam`, `kartikeyrajvaidya`, `sumanth-fyle1` and `satyamyesj` as collaborators to your repository with Admin access.
-* For steps to add a collaborator to your repository, refer to [this link](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository).
+Run tests for these using:
+```
+pytest tests/SQL/sql_test.py
+```
 
-**Once you are done with your task, please use [this form](https://forms.gle/7ZBydqaoWaJTDYCA8) to complete your submission.**
+🏗️ Project Structure
 
-Once you submit the assignment, you will hear back from us within 48 hours from us via email. 
+Academic-Assignment-Management-Backend-Service/
+│
+├── core/                       # Core application logic
+│   ├── apis/                   # API routes and handlers
+│   ├── models/                 # Database models
+│   ├── migrations/             # Alembic DB migration files
+│   └── server.py               # Flask entry point
+│
+├── tests/                      # Unit & SQL tests
+│
+├── requirements.txt            # Python dependencies
+├── run.sh                      # Script to start the server
+├── README.md                   # Project documentation
+└── docker-compose.yml (optional)
 
-We look forward to seeing your solution!
+🛠 Tech Stack
+💻 Backend
+Python 3.13
+
+Flask – Lightweight WSGI web application framework
+
+SQLAlchemy – ORM for database operations
+
+Alembic – For database migrations
+
+🧪 Testing & Coverage
+pytest – Testing framework
+
+pytest-cov – Code coverage plugin
+
+SQLite – Lightweight embedded database for local development
+
+Postman – For testing REST APIs
+
+📦 Package & Environment Management
+virtualenv – For isolated Python environments
+
+pip – Python package installer
+
+🐳 Optional (Docker Support)
+Docker
+
+docker-compose
+
+👨‍💻 Author
+Sujit Prakash Tadadikar
+

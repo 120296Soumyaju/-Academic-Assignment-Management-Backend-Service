@@ -86,3 +86,15 @@ def test_assignment_resubmit_error(client, h_student_1):
     assert response.status_code == 400
     assert error_response['error'] == 'FyleError'
     assert error_response["message"] == 'only a draft assignment can be submitted'
+
+# New Test Case
+
+def test_submit_already_submitted_assignment(client, h_student_1):
+    """Failure case: A submitted assignment cannot be resubmitted"""
+    response = client.post(
+        '/student/assignments/submit',
+        headers=h_student_1,
+        json={'id': 2, 'teacher_id': 2}
+    )
+    assert response.status_code == 400
+    assert b'only a draft assignment can be submitted' in response.data

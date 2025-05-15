@@ -99,3 +99,50 @@ def test_grade_assignment_draft_assignment(client, h_teacher_1):
     data = response.json
 
     assert data['error'] == 'FyleError'
+
+# NEW TESTS FOR grading API ADDED BELOW
+
+def test_teacher_grades_assignment(client, h_teacher_1):
+    """Success case: Teacher successfully grades a submitted assignment"""
+    response = client.post(
+        '/teacher/assignments/grade',
+        headers=h_teacher_1,
+        json={'id': 3, 'grade': 'A'}  # Assuming ID 3 is assigned to teacher 1
+    )
+    assert response.status_code == 200
+    json_data = response.get_json()
+    assert json_data['data']['grade'] == 'A'
+    assert json_data['data']['state'] == 'GRADED'
+
+
+def test_teacher_grades_wrong_assignment(client, h_teacher_1):
+    """Failure case: A teacher cannot grade another teacher's assignment"""
+    response = client.post(
+        '/teacher/assignments/grade',
+        headers=h_teacher_1,
+        json={'id': 5, 'grade': 'B'}  # Assuming ID 5 belongs to another teacher
+    )
+    assert response.status_code == 400
+    assert b'This assignment is assigned to another teacher' in response.data
+
+
+'''def test_teacher_grades_draft_assignment(client, h_teacher_1):
+    """Failure case: A teacher cannot grade a draft assignment"""
+    response = client.post(
+        '/teacher/assignments/grade',
+        headers=h_teacher_1,
+        json={'id': 6, 'grade': 'C'}  # Assuming ID 6 is in DRAFT state
+    )
+    assert response.status_code == 400
+    assert b'only submitted assignments can be graded' in response.data
+'''
+
+'''def test_teacher_grades_without_grade(client, h_teacher_1):
+    """Failure case: A teacher cannot grade without providing a grade"""
+    response = client.post(
+        '/teacher/assignments/grade',
+        headers=h_teacher_1,
+        json={'id': 4, }  # Missing 'grade' field
+    )
+    assert response.status_code == 400
+    assert b'assignment with empty grade cannot be graded' in response.data'''
